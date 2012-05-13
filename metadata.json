@@ -1,0 +1,29 @@
+{
+    "maintainer": "Andy Gale",
+    "attributes": {
+    },
+    "suggestions": {
+    },
+    "platforms": {
+    },
+    "dependencies": {
+    },
+    "maintainer_email": "andy@salgo.net",
+    "conflicting": {
+    },
+    "version": "0.1.0",
+    "name": "netatalk-timemachine",
+    "providing": {
+    },
+    "license": "Apache 2.0",
+    "recipes": {
+    },
+    "replacing": {
+    },
+    "groupings": {
+    },
+    "long_description": "= DESCRIPTION:\n\nDownloads netatalk package at http://www.mikepalmer.net/files/netatalk_2.2.1-1_amd64.deb and sets up Apple talk as described in the blog post http://www.mikepalmer.net/build-a-netatalk-time-machine-for-osx-lion-using-debian-6-0-squeeze/",
+    "recommendations": {
+    },
+    "description": "Installs netatalk package on Debian so it can be used with TimeMachine"
+  }

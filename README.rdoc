@@ -1,0 +1,65 @@
+= DESCRIPTION:
+
+Installs netatalk package on Debian so it can be used with Mac OS X Lion Time Machine
+
+= REQUIREMENTS:
+
+Debian
+
+= ATTRIBUTES:
+
+Attributes are in the "netatalk-timemachine" attribute key.
+
+* path - Time Machine path
+* used - User that should own the Time Machine path, default root which is obviously not very useful
+* group - Group that should own the Time Machine path, default root.
+
+= USAGE:
+
+Time Machine refused to use the default netatalk package on Debian to store backups.
+
+Include the "netatalk-timemachine" recipe on the desired node's run list. 
+
+You'll want to override the default attributes
+
+    "netatalk" => {
+      "path" => "/srv/something",
+      "user" => "agale",
+      "group" => "agale"
+    }
+
+
+= Mac OS X Setup
+
+You'll need to run
+
+  $ defaults write com.apple.systempreferences TMShowUnsupportedNetworkVolumes 1
+
+You'll also need to setup a sparse disk image on your Mac and copy it over to the Time Machine share.
+
+  $ hdiutil create -size 512g -fs HFS+J -volname "Time Machine" `grep -A1 LocalHostName /Library/Preferences/SystemConfiguration/preferences.plist | tail -n1 | awk 'BEGIN { FS = "|" } ; { print $2 }'`_`ifconfig en0 | grep ether | awk 'BEGIN { FS = ":" } ; {print $1$2$3$4$5$6}' | awk {'print $2'}`.sparsebundle
+
+
+Hat tip to 
+
+  http://www.trollop.org/2011/07/23/os-x-10-7-lion-time-machine-netatalk-2-2/
+
+And finally - and most importantly - where the Debian package and instructions the cookbook uses came from:
+
+  http://www.mikepalmer.net/build-a-netatalk-time-machine-for-osx-lion-using-debian-6-0-squeeze/
+
+= LICENSE AND AUTHOR:
+
+Author:: Andy Gale <andy@salgo.net>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

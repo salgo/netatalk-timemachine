@@ -1,4 +1,0 @@
-netatalk-timemachine
-====================
-
-netatalk-timemachine
